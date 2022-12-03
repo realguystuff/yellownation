@@ -13,7 +13,7 @@ module.exports = {
 			option
 				.setName('reason')
 				.setDescription('why do u want to kick em? (optional)'))
-		    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+		    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers | PermissionFlagsBits.KickMembers)
 		    .setDMPermission(false),
   async execute(interaction) {
     if (interaction.guild.members.me.permissions.has([PermissionFlagsBits.KickMembers, PermissionFlagsBits.BanMembers])) {

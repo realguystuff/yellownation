@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => res.send('Hello Express app!'));
-app.listen(3000, () => console.log('server started'));
+const port = 3000;
+
+app.get('/', (req, res) => res.send('pong!'));
+
+app.listen(port, () => console.log(`listening at http://localhost:${port}`));
 
 // START D.JS
 const fs = require('node:fs');
@@ -23,6 +26,16 @@ for (const file of commandFiles) {
 		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 	}
 }
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isModalSubmit()) return;
+	if (interaction.customId === 'myModal') {
+		await interaction.reply({ content: 'Your submission was received successfully!' });
+    const good = interaction.fields.getTextInputValue('good');
+	const bot = interaction.fields.getTextInputValue('bot');
+    client.users.send('821682594830614578', `good: "${good}"
+bot: "${bot}" from ${interaction.user.username}`);
+	}
+});
 client.on(Events.InteractionCreate, interaction => {
   if (!interaction.isChatInputCommand()) return;const command = interaction.client.commands.get(interaction.commandName);
 	if (!command) {
