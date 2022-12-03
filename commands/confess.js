@@ -22,7 +22,7 @@ module.exports = {
 	      .setTitle('Anonymous Confession!')
 	      .setDescription(`"${message}"`)
 	      .setTimestamp()
-	      .setFooter({ text: 'if this confession is bad or stuff, just report it to Nina with the reason why' });
+	      .setFooter({ text: 'if you wanna report this, use /reportconfess and copy the confession text and give reason' });
 		  await interaction.reply({ content: 'Sucess!', ephemeral: true });
       await interaction.followUp({ embeds: [anonymous] });
       client.users.send('821682594830614578', `Anonymous Confession: "${message}" by:` + '\n```json\n'+interaction.user.username+'\n```');

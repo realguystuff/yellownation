@@ -8,12 +8,12 @@ module.exports = {
     if (interaction.user.id === '821682594830614578') {
       const update = new EmbedBuilder()
 	      .setColor('#00f7ff')
-	      .setTitle('1.2.2!')
-	      .setDescription(`1.2.2 adds:`)
+	      .setTitle('1.3.0!')
+	      .setDescription(`1.3.0 adds:`)
         .addFields(
-		      { name: '**- Fixed Ping**', value: 'No more NaN' },
-          { name: '**- More embeds!!**', value: 'including me...?' },
-          { name: '**- reportable anonymous confessions**', value: 'because i will give nina the names of people who gave them! muahahaha!' },
+		      { name: '**- Added kick**', value: 'kick them out' },
+          { name: '**- report confessions!**', value: 'dont dm nina anymore' },
+          { name: '**refreshed ping**', value: 'im faster now' },
 	      )
 	      .setFooter({ text: 'pwease give me food now?? pretty pwease? :(' });
       await interaction.reply({ 
