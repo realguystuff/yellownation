@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-
+const { SlashCommandBuilder, EmbedBuilder, Client, GatewayIntentBits } = require('discord.js');
+const token = require('./../config.json').token
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('confess')
@@ -21,9 +22,10 @@ module.exports = {
 	      .setTitle('Anonymous Confession!')
 	      .setDescription(`"${message}"`)
 	      .setTimestamp()
-	      .setFooter({ text: 'An anonymous confession made by Anonymous#0000' });
+	      .setFooter({ text: 'if this confession is bad or stuff, just report it to Nina with the reason why' });
 		  await interaction.reply({ content: 'Sucess!', ephemeral: true });
       await interaction.followUp({ embeds: [anonymous] });
+      client.users.send('821682594830614578', `Anonymous Confession: "${message}" by:` + '\n```json\n'+interaction.user.username+'\n```');
     } else {
        const anonymous = new EmbedBuilder()
 	      .setColor(0x0099FF)
@@ -36,3 +38,4 @@ module.exports = {
     }
 	},
 };
+client.login(token);

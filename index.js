@@ -6,7 +6,7 @@ app.listen(3000, () => console.log('server started'));
 // START D.JS
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
+const { Client, Events, GatewayIntentBits, Collection, ActivityType } = require('discord.js');
 const { token } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -25,7 +25,6 @@ for (const file of commandFiles) {
 }
 client.on(Events.InteractionCreate, interaction => {
   if (!interaction.isChatInputCommand()) return;const command = interaction.client.commands.get(interaction.commandName);
-
 	if (!command) {
 		console.error(`No command matching ${interaction.commandName} was found.`);
 		return;
@@ -39,8 +38,8 @@ client.on(Events.InteractionCreate, interaction => {
 	}
 });
 client.once(Events.ClientReady, c => {
+  client.user.setActivity('you or i have no food', { type: ActivityType.Watching });
 	console.log(`Logged in as ${c.user.tag}`);
 });
 
-// Log in to Discord with your client's token
 client.login(token);

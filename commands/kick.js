@@ -2,17 +2,17 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('ban')
-		.setDescription('ban hammer!!!!')
+		.setName('kick')
+		.setDescription('kick em in the ass')
 		.addUserOption(option =>
 			option
 				.setName('target')
-				.setDescription('i need his name pls')
+				.setDescription('who am i gonna kick')
 				.setRequired(true))
 		.addStringOption(option =>
 			option
 				.setName('reason')
-				.setDescription('u lazy??'))
+				.setDescription('why do u want to kick em? (optional)'))
 		    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
 		    .setDMPermission(false),
   async execute(interaction) {
@@ -20,12 +20,12 @@ module.exports = {
 	    const target = interaction.options.getUser('target');
 		const reason = interaction.options.getString('reason') ?? 'mod too lazy to give reason';
 
-		await interaction.reply(`Banning ${target.username} for reason: "${reason}"`);
-		await interaction.guild.members.ban(target);
+		await interaction.reply(`kicking ${target.username} for reason: "${reason}"`);
+		await interaction.guild.members.kick(target);
     } else {
-      interaction.reply(`You cannot ban ${target.username}!
+      interaction.reply(`You cannot kick ${target.username}!
 
-Tip: You need **BOTH** Kick Members permission and the Ban Members permission to ban members, in case you were wondering why you can't ban when you have the Ban Members permission.`);
+Tip: You need **BOTH** Kick Members permission and the Ban Members permission to kick members, in case you were wondering why you can't kick when you have the Kick Members permission.`);
     }
 	},
 };
