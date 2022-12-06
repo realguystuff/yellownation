@@ -1,6 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder, Client, GatewayIntentBits } = require('discord.js');
-const token = require('./../config.json').token
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const client = require('./../client.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('confess')
@@ -38,4 +37,4 @@ module.exports = {
     }
 	},
 };
-client.login(token);
+client.login(process.env.token);

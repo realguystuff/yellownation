@@ -1,18 +1,11 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+console.clear();
+require('./server.js')
 
-app.get('/', (req, res) => res.send('pong!'));
-
-app.listen(port, () => console.log(`listening at http://localhost:${port}`));
-
-// START D.JS
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Events, GatewayIntentBits, Collection, ActivityType } = require('discord.js');
-const { token } = require('./config.json');
+const { Events, Collection, ActivityType } = require('discord.js');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = require('./client.js');
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -54,5 +47,4 @@ client.once(Events.ClientReady, c => {
   client.user.setActivity('you or i have no food', { type: ActivityType.Watching });
 	console.log(`Logged in as ${c.user.tag}`);
 });
-
-client.login(token);
+client.login(process.env.token);
