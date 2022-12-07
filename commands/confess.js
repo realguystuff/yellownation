@@ -37,4 +37,3 @@ module.exports = {
     }
 	},
 };
-client.login(process.env.token);
